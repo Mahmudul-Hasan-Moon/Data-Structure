@@ -1,0 +1,813 @@
+          Data structure
+
+///Bauble sort
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n,temp;
+
+    cout<<"Enter number of element :";
+    cin>>n;
+
+    int arr[n];
+
+    for(int i=1;i<=n;i++)
+        cin>>arr[i];
+
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+        if(arr[j]>arr[j+1]){
+            temp=arr[j];
+            arr[j]=arr[j+1];
+            arr[j+1]=temp;
+        }
+    }
+    }
+    for(int i=1;i<=n;i++)
+        cout<<arr[i]<<" ";
+
+    return 0;
+}
+
+*********************************************************************************************
+
+///Binary search
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,l,m,h,item;
+    cout<<"Enter number of element :";
+    cin>>n;
+
+    int arr[n];
+
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+
+    sort(arr,arr+n);
+
+    cout<<"Enter the element want to find :";
+    cin>>item;
+
+        l=0;
+        h=n-1;
+        m =(l+h)/2;
+
+        while(l<=h){
+            if(arr[m]<item)
+                l=m+1;
+            else if(arr[m]==item){
+                cout<<item<<" found at location "<<m+1<<endl;
+			    break;
+            }
+            else
+                h=m-1;
+            m =(l+h)/2;
+        }
+        if(l>h)
+            cout<<"Not found"<<endl;
+
+
+    return 0;
+}
+
+***********************************************************************************
+///Insertion sort
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n,i,j;
+
+    cout<<"Enter number of element :"<<endl;
+    cin>>n;
+    int arr[n];
+
+    cout<<"Enter the element :"<<endl;
+    for(i=1;i<=n;i++)
+    cin>>arr[i];
+
+    for(i=1;i<=n;i++){
+        int x= arr[i];
+        j=i-1;
+
+        while(j>=1&& arr[j]>x){
+            arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=x;
+    }
+    cout<<"After sorting the array is :"<<endl;
+    for(i=1;i<=n;i++)
+    cout<<arr[i]<<" ";
+
+    return 0;
+}
+
+****************************************************************************************
+
+//selection sort
+
+#include<bits/stdc++.h>///Selection sort
+using namespace std;
+
+int main()
+{
+    int n,i,j;
+
+    cout<<"Enter number of element :"<<endl;
+    cin>>n;
+    int arr[n];
+
+    cout<<"Enter the element :"<<endl;
+    for(i=1;i<=n;i++)
+    cin>>arr[i];
+
+    for(i=1;i<=n;i++){
+        for(j=i+1;j<=n;j++){
+            if(arr[i]>arr[j]){
+                swap(arr[i],arr[j]);
+            }
+        }
+    }
+
+    cout<<"After sorting the array is :"<<endl;
+    for(i=1;i<=n;i++)
+    cout<<arr[i]<<" ";
+
+    return 0;
+}
+
+
+****************************************************************************
+
+//Merge sort
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void merge(int *L,int mid,int *R,int n,int *temp)
+{
+    int k=0,l=0,r=0;
+    while(l<mid && r<n){
+        if(L[l]<R[r]){
+            temp[k]=L[l]; l++; k++;
+        }
+        else if(L[l]>R[r]){
+            temp[k]=R[r]; r++; k++;
+        }
+    }
+    while(l<mid){ temp[k]=L[l]; k++; l++;}
+    while(r<n){ temp[k]=R[r]; k++; r++;}
+}
+
+void mergesort(int *temp,int n)
+{
+    int mid,j,L[100],R[100];
+    if(n<2) return;
+    mid=n/2;
+
+    for(j=0;j<mid;j++) L[j]=temp[j];
+    for(j=mid;j<n;j++) R[j-mid]=temp[j];
+
+    mergesort(L,mid);
+    mergesort(R,n-mid);
+    merge(L,mid,R,n-mid,temp);
+}
+int main()
+{
+    int arr[100],n,i;
+
+    cout<<"Enter The Number Of Elements : "<<endl;
+    cin>>n;
+
+    cout<<"Enter the element :"<<endl;
+    for(i=0;i<n;i++)
+        cin>>arr[i];
+
+    mergesort(arr,n);
+
+    cout<<"After sorting :"<<endl;
+    for(i=0;i<n;i++)
+        cout<<arr[i]<<" ";
+
+    return 0;
+}
+****************************************************************************************
+///Linear search
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n,item,loc=0;
+
+    cout<<"Enter the number of element :";
+    cin>>n;
+    int arr[n];
+
+    for(int i=1;i<=n;i++)
+        cin>>arr[i];
+
+    cout<<"Enter your search item :";
+    cin>>item;
+
+    for(int i=1;i<=n;i++){
+            if(item == arr[i])
+            loc=i;
+    }
+    if(loc==0)
+        cout<<"Item is not found in the array"<<endl;
+    else
+        cout<<"Item is found in location "<<loc<<endl;
+
+
+    return 0;
+}
+
+****************************************************************************************
+
+//Graph representation
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int GRAPH[100][100],V,E,start,end,i,j;
+
+    printf("Enter The Number Of Vertex/Node....: \n");
+    scanf("%d",&V);
+
+    printf("Enter The Number OF Edges..: \n");
+    scanf("%d",&E);
+
+    printf("Enter the Origin & Then Destination For %d Times:\n",E);
+
+    for(i=1;i<=E;i++){
+        scanf("%d %d",&start,&end);
+        GRAPH[start][end]=1;
+    }
+    printf("After Connection The Edges Graph Representation :\n");
+
+    for(i=1;i<=V;i++){
+        for(j=1;j<=V;j++)
+            printf("%d ",GRAPH[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
+
+************************************************************************************
+
+///   DFS
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int i,j,k,n,m,v,top=0,visit[10],visited[10],stk[10],GRAPH[10][10];
+
+    cout<<"Enter the number of Vertex and Edges :"<<endl;
+    cin>>n>>m;
+
+    cout<<"Enter the start and end point of each Edges :"<<endl;
+    for(k=1;k<=m;k++){
+        cin>>i>>j;
+        GRAPH[i][j] = 1;
+    }
+    cout<<"Enter initial vertex :"<<endl;
+    cin>>v;
+    cout<<"Visited vertex : "<<endl;
+    cout<<v<<" ";
+
+    visited[v]=1;
+
+    for(k=1;k<n;k++){
+        for(j=n;j>=1;j--)
+            if(GRAPH[v][j]!=0 && visited[j]!=1 && visit[j]!=1)
+        {
+            visit[j]=1;
+            stk[top]=j;
+            top++;
+        }
+        v = stk[--top];
+        cout<<v<<" ";
+        visit[v]=0;   visited[v]=1;
+    }
+    return 0;
+}
+ *******************************************************************************
+/// BFS
+
+#include<iostream>
+using namespace std;
+
+int rear,front,i,j,k,m,n,v,que[10],visit[10],visited[10],Graph[10][10];
+
+int main()
+{
+
+    cout<<"Enter number of vertex and Edges :"<<endl;
+    cin>>n>>m;
+
+    cout<<"Enter start and end point of each Edges :"<<endl;
+    for(k=1;k<=m;k++)
+    {
+        cin>>i>>j;
+        Graph[i][j]=1;
+    }
+
+    cout<<"Enter the initial vertex :"<<endl;
+    cin>>v;
+
+    cout<<"The vertex are :"<<endl;
+    cout<<v<<" ";
+
+    visited[v]=1;
+
+    for(k=1;k<n;k++){
+        for(j=1;j<=n;j++)
+            if(Graph[v][j]!=0 && visit[j]!=1 && visited[j]!=1){
+                visit[j]=1;
+                que[rear]=j;
+                rear++;
+            }
+            v = que[front++];
+            cout<<v<<" ";
+            visit[v]=0; visited[v]=1;
+    }
+
+    return 0;
+}
+
+
+**************************************************************************************
+
+// Factorial
+
+#include<iostream>
+using namespace std;
+
+long int factorial(int n)
+{
+    if(n==1)
+        return 1;
+    else
+        return(n*factorial(n-1));
+}
+
+int main()
+{
+    int n;
+
+    cout<<"Enter a number :";
+    cin>>n;
+
+    long int fac = factorial(n);
+
+    cout<<fac<<endl;
+
+    return 0;
+}
+
+
+*******************************************************************************
+
+///Fibonocci
+#include<iostream>
+using namespace std;
+
+int fibonocci(int n)
+{
+    if(n==0)
+        return 0;
+    else if(n==1)
+        return 1;
+    else
+        return(fibonocci(n-2)+fibonocci(n-1));
+}
+
+int main()
+{
+    int n;
+
+    cout<<"Enter a number :";
+    cin>>n;
+
+    int fib = fibonocci(n);
+
+    cout<<fib<<endl;
+
+    return 0;
+}
+
+
+******************************************************************************************************
+///Find the largest element from an array
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n,large,loc=0;
+    cout<<"Enter the number of element :";
+    cin>>n;
+    int arr[n];
+
+    for(int i=1;i<=n;i++)
+        cin>>arr[i];
+
+    large =arr[1];
+
+    for(int i=1;i<=n;i++){
+        if(large<arr[i]){
+            large = arr[i];
+            loc = i;
+            }
+    }
+    cout<<"Largest element "<<large<<" find in location "<<loc<<endl;
+
+    return 0;
+}
+ 
+***********************************************************************************
+///infix to postfix
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    stack<char>st;
+    string q;
+    vector<char>p;
+    cout<<"Enter infix expression :"<<endl;
+    cin>>q;
+    st.push('(');
+    q.push_back(')');
+    int l=q.size();
+    for(int i=0; i<l; i++)
+    {
+        if(q[i]!='+'&&q[i]!='-'&&q[i]!='*'&&q[i]!='/'&&q[i]!='^'&&q[i]!='('&&q[i]!=')')
+            p.push_back(q[i]);
+        else if(q[i]=='(')
+            st.push(q[i]);
+        else if(q[i]==')')
+        {
+            while(st.top()!='(')
+            {
+                p.push_back(st.top());
+                st.pop();
+            }
+            st.pop();
+        }
+        else
+        {
+            if(q[i]=='^')
+            {
+                while(st.top()=='^')
+                {
+                    p.push_back(st.top());
+                    st.pop();
+                }
+            }
+            else if(q[i]=='/'||q[i]=='*')
+            {
+                while(st.top()=='^'||st.top()=='/'||st.top()=='*')
+                {
+                    p.push_back(st.top());
+                    st.pop();
+                }
+            }
+            else
+            {
+                while(st.top()!='(')
+                {
+                    p.push_back(st.top());
+                    st.pop();
+                }
+            }
+            st.push(q[i]);
+        }
+    }
+    vector<char>::iterator it;
+    for(it=p.begin();it!=p.end();it++)
+        cout<<*it;
+    cout<<endl;
+    return 0;
+}
+
+******************************************************************************
+
+///postfix evaluation
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string p;
+    cout<<"Enter postfix expression separate each char by coma: "<<endl;
+    cin>>p;
+
+    stack<int>st;
+
+    int l=p.size();
+    for(int i=0;i<l;i++)
+    {
+        if(p[i]!='+'&&p[i]!='-'&&p[i]!='*'&&p[i]!='/'&&p[i]!='^'&&p[i]!=',')
+        {
+            int j,x=0;
+            for(j=i;p[j]!=','&&j<l;j++){
+                int z=p[j]-48;
+                x=x*10+z;
+            }
+            i=j-1;
+            st.push(x);
+        }
+        else if(p[i]!=',')
+        {
+            int x,y;
+            x=st.top(),st.pop();
+            y=st.top(),st.pop();
+            if(p[i]=='+')
+                st.push(y+x);
+            else if(p[i]=='-')
+                st.push(y-x);
+            else if(p[i]=='*')
+                st.push(y*x);
+            else if(p[i]=='/')
+                st.push(y/x);
+            else{
+                double z=pow(y+0.0,x);
+                int k=(int)z;
+                if(k<z)
+                    k++;
+                st.push(k);
+            }
+        }
+
+    }
+    cout<<st.top()<<endl;
+    return 0;
+}
+
+*******************************************************************************
+
+//Queue operation
+
+#include<iostream>
+using namespace std;
+int queue[100],choice;
+
+int front=0,rear=0;
+
+void push(int n)
+{
+
+    if(rear==n)
+        cout<<"Overflow"<<endl;
+    else
+    {
+        int value;
+
+        cout<<"Enter your value : ";
+        cin>>value;
+        queue[rear]=value;
+        rear++;
+    }
+}
+void pop()
+{
+    if(front==rear)
+        cout<<"Underflow"<<endl;
+    else
+    {
+        front++;
+        cout<<"The value is poped successfully"<<endl;
+    }
+}
+void display()
+{
+    if(front==rear)
+        cout<<"Stack is empty"<<endl;
+    else{
+    for(int i=front;i<rear; i++)
+        cout<<queue[i]<<' ';
+    cout<<endl;
+    }
+}
+
+int main()
+{
+
+    int n;
+
+    cout<<"Enter the size of the queue : ";
+    cin>>n;
+
+    while(1)
+    {
+        cout<<"******** MENU *******"<<endl;
+        cout<<"\n 1: push \n 2: pop \n 3: display"<<endl;
+
+        int choice;
+
+        cout<<"Enter your choice : ";
+        cin>>choice;
+
+        switch(choice)
+        {
+        case 1:
+            push( n);
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            display();
+            break;
+        }
+    }
+    return 0;
+}
+
+****************************************************************************************
+
+///Stack operation 
+
+#include<iostream>
+using namespace std;
+int stack[100],choice;
+
+int top=0;
+
+void push(int n)
+{
+
+    if(top==n)
+        cout<<"Overflow"<<endl;
+    else
+    {
+        int value;
+
+        cout<<"Enter your value : ";
+        cin>>value;
+        top++;
+        stack[top]=value;
+    }
+}
+void pop()
+{
+    if(top==0)
+        cout<<"Underflow"<<endl;
+    else
+    {
+        --top;
+        cout<<"The value is poped successfully"<<endl;
+    }
+}
+void display()
+{
+    if(top==0)
+        cout<<"Stack is empty"<<endl;
+    else{
+    for(int i=1;i<=top; i++)
+        cout<<stack[i]<<' ';
+    cout<<endl;
+    }
+}
+
+int main()
+{
+
+    int n;
+
+    cout<<"Enter the size of the stack : ";
+    cin>>n;
+
+    while(1)
+    {
+        cout<<"******** MENU *******"<<endl;
+        cout<<"\n 1: push \n 2: pop \n 3: display"<<endl;
+
+        int choice;
+
+        cout<<"Enter your choice : ";
+        cin>>choice;
+
+        switch(choice)
+        {
+        case 1:
+            push( n);
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            display();
+            break;
+
+        }
+    }
+
+    return 0;
+}
+
+**********************************************************************************
+
+//Tower of hanoi
+
+#include<bits/stdc++.h>
+using namespace std;
+void hanoi(int n,char BEG,char AUX,char END)  ///BEG=Beginning AUX=Auxiliary END= end
+{
+    if(n>=1){
+        hanoi(n-1,BEG,END,AUX);
+        cout<<BEG<<" to "<<END<<endl;
+        hanoi(n-1,AUX,BEG,END);
+    }
+
+}
+int main()
+{
+    int n;
+    cout<<"Enter number of Disk :"<<endl;
+    cin>>n;
+    hanoi(n,'A','B','C');
+
+    return 0;
+}
+
+**************************************************************************************************
+//represent linked list
+#include<iostream>
+using namespace std;
+
+struct Node{
+        int info;
+        Node* next;
+    } *start, *newptr, *current, *ptr;
+
+Node* createNewNode(int);
+void insertEnd(Node*);
+void display(Node*);
+
+int main(){
+    char ch='y';
+    start = NULL;
+    while(ch=='y')
+    {
+        int n;
+
+        cout<<"Enter the information -> ";
+        cin>>n;
+
+        newptr = createNewNode(n);
+        cout<<"New node created successfully "<<endl;
+
+        insertEnd(newptr);
+        display(start);
+
+        cout<<"Want to enter more please press y -> ";
+        cin>>ch;
+    }
+    return 0;
+
+}
+
+Node* createNewNode(int a)
+{
+    ptr = new Node;
+    ptr->info = a;
+    ptr->next = NULL;
+    return ptr;
+}
+
+void insertEnd(Node* p)
+{
+    if(start == NULL){
+        start = p;
+        current = p;
+    }else {
+        current->next = p;
+        current = p;
+    }
+}
+
+void display(Node* p)
+{
+
+    while(p!=NULL){
+        cout<<p->info<<"->";
+        p=p->next;
+    }
+    cout<<endl;
+}
+

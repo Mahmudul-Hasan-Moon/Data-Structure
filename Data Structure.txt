@@ -1,0 +1,939 @@
+
+
+                                   ****** Random Topic ******
+Programme 01. Linear Array
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int n,i,j,k,a[100],p;
+    printf("Enter The Number Of Element..:\n");
+    scanf("%d",&n);
+    printf("Enter %d Integer As Your Choice...:\n",n);
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    printf("Original Array Elements..:\n");
+    for(i=0;i<n;i++)
+        printf("%d ",a[i]);
+    printf("\nEnter An Integer That U Want To Insert...:\n");
+    scanf("%d",&a[i]);
+    printf("After Insertion The New Array Elements Are:\n");
+    n++;
+    for(i=0;i<n;i++)
+        printf("%d ",a[i]);
+
+    printf("\nEnter Which Position Are U Want To Delete...:\n");
+    n--;
+    scanf("%d",&p);
+    for(k=p-1;k<n;k++)
+        a[k]=a[k+1];
+    printf("After Deletion the Array Elements Are...:\n");
+    for(i=0;i<n;i++)
+        printf("%d ",a[i]);
+
+    return 0;
+}
+
+Programme 02. Matrices Multiplication 
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    int r1,c1,r2,c2,i,j,k,m1[100][100],m2[100][100],m[100][100];
+    printf("Enter The No. Of Row & Columns For The First Matrics...::\n");
+    scanf("%d %d",&r1,&c1);
+    printf("Now Enter The Elements.....::\n");
+    for(i=0;i<r1;i++){
+        for(j=0;j<c1;j++)
+            scanf("%d",&m1[i][j]);
+    }
+    printf("Enter The No. Of Row & Columns For The Second Matrics...::\n");
+    scanf("%d %d",&r2,&c2);
+    printf("Now Enter The Elements.....::\n");
+    for(i=0;i<r2;i++){
+        for(j=0;j<c2;j++)
+            scanf("%d",&m2[i][j]);
+    }
+    printf("After Multiply The Result Is....::\n");
+
+    for(i=0;i<r1;i++){
+        for(j=0;j<c2;j++){
+            m[i][j]=0;
+            for(k=0;k<c1;k++)
+                m[i][j]+=m1[i][k]*m2[k][j];
+        }
+    }
+     for(i=0;i<r1;i++){
+        for(j=0;j<c2;j++)
+           printf("%d ",m[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+
+}
+                                    ******* Recursion *******
+
+Programme 03. Factorial
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int Factorial(int n)
+{
+    if(n==0) return 1;
+    else
+        return n*Factorial(n-1);
+}
+
+int main()
+{
+    int x,fact;
+    printf("Enter An Integer Number...::\n");
+    scanf("%d",&x);
+    fact=Factorial(x);
+    printf("%d",fact);
+}
+
+Programme 04. Fibonacci Series
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int Fibonacci(int n)
+{
+    if(n==1 || n==2)
+        return 1;
+    else return Fibonacci(n-1)+Fibonacci(n-2);
+}
+
+int main()
+{
+    int x,i,j;
+    printf("How Many Terms Of Fibonacci Serise U Want To See..::\n");
+    scanf("%d",&x);
+    for(i=1;i<=x;i++)
+        printf("%d ",Fibonacci(i));
+    return 0;
+}
+
+Programme 05. Towers Of Hanoi
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void TOH(int n,char BEG,char AUX,char END)
+{
+    if(n>=1){
+        TOH(n-1,BEG,END,AUX);
+        printf("%c to %c\n",BEG,END);
+        TOH(n-1,AUX,BEG,END);
+    }
+}
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    TOH(n,'A','B','C');
+    return 0;
+}
+
+                                  ******** Sorting *********
+
+Programme 06. Bubble Sort
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int s,n,i,j,k,t,x[12345];
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+using namespace std;
+
+void bubbleSort(int *a,int n)
+{
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<n-1-i;j++){
+            if(a[j]>a[j+1])
+                swap(a[j],a[j+1]);
+        }
+    }
+}
+
+int main()
+{
+    int x[100],n,i,j,k;
+    pf("Enter Number Of Elements : ");
+    sf("%d",&n);
+    for(i=0;i<n;i++)
+        sf("%d",&x[i]);
+    bubbleSort(x,n);
+    for(i=0;i<n;i++)
+        pf("%d ",x[i]);
+    return 0;
+}
+
+Programme 07. Selection Sort
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+using namespace std;
+
+void selectionSort(int *a,int n)
+{
+    for(int i=0;i<n-1;i++){
+        int min_index=i;
+        for(int j=i+1;j<n;j++){
+            if(a[j]<a[min_index])
+                min_index=j;
+        }
+        swap(a[i],a[min_index]);
+    }
+}
+
+int main()
+{
+    int x[100],n,i,j;
+    pf("Enter The Number Of Elements : ");
+    sf("%d",&n);
+    for(i=0;i<n;i++)
+        sf("%d",&x[i]);
+    selectionSort(x,n);
+    for(i=0;i<n;i++)
+        pf("%d ",x[i]);
+
+    return 0;
+}
+
+Programme 08. Insertion Sort
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+using namespace std;
+
+void insertionSort(int *a,int n)
+{
+    for(int i=0;i<n;i++){
+        int value=a[i];
+        int hole=i;
+        while(hole>0 && a[hole-1]>value){
+            a[hole]=a[hole-1];
+            hole--;
+        }
+        a[hole]=value;
+    }
+}
+
+int main()
+{
+    int x[100],n,i,j;
+    pf("Enter The Number Of Elements : ");
+    sf("%d",&n);
+    for(i=0;i<n;i++)
+        sf("%d",&x[i]);
+    insertionSort(x,n);
+    for(i=0;i<n;i++)
+        pf("%d ",x[i]);
+
+    return 0;
+}
+
+Programme 09. Merge Sort
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+using namespace std;
+
+void merge(int *L,int nL,int *R,int nR,int *a)
+{
+    int k=0,l=0,r=0;
+    while(l<nL && r<nR){
+        if(L[l]<R[r]){
+            a[k]=L[l]; l++; k++;
+        }
+        else if(L[l]>R[r]){
+            a[k]=R[r]; r++; k++;
+        }
+    }
+    while(l<nL){ a[k]=L[l]; k++; l++;}
+    while(r<nR){ a[k]=R[r]; k++; r++;}
+}
+
+void mergeSort(int *a,int n)
+{
+    int mid,j,L[100],R[100];
+    if(n<2) return;
+    mid=n/2;
+    for(j=0;j<mid;j++) L[j]=a[j];
+    for(j=mid;j<n;j++) R[j-mid]=a[j];
+    mergeSort(L,mid);
+    mergeSort(R,n-mid);
+    merge(L,mid,R,n-mid,a);
+}
+int main()
+{
+    int x[100],n,i;
+    pf("Enter The Number Of Elements : ");
+    sf("%d",&n);
+    for(i=0;i<n;i++)
+        sf("%d",&x[i]);
+    mergeSort(x,n);
+    for(i=0;i<n;i++)
+        pf("%d ",x[i]);
+
+    return 0;
+}
+
+Programme 10. Quick Sort
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+using namespace std;
+
+int partition(int *a,int start,int end)
+{
+    int pivot=a[end];
+    int pIndex=start;
+    for(int i=start;i<end;i++){
+        if(a[i]<=pivot){
+            swap(a[i],a[pIndex]);
+            pIndex++;
+        }
+    }
+    swap(a[end],a[pIndex]);
+    return pIndex;
+}
+
+void quickSort(int *a,int start,int end)
+{
+    if(start<end){
+        int pIndex=partition(a,start,end);
+        quickSort(a,start,pIndex-1);
+        quickSort(a,pIndex+1,end);
+    }
+}
+
+int main()
+{
+    int x[100],n,i,j;
+    pf("Enter The Number Of Elements : ");
+    sf("%d",&n);
+    for(i=0;i<n;i++)
+        sf("%d",&x[i]);
+    quickSort(x,0,n-1);
+    for(i=0;i<n;i++)
+        pf("%d ",x[i]);
+
+    return 0;
+}
+
+                                 ********* Searching *********
+
+Programme 11. Linear Search 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int n,i,j,item,a[12345];
+bool isContain(int *x,int m,int t)
+{
+    for(j=0;j<m;j++){
+        if(x[j]==t)
+            return true;
+    }
+    return false;
+}
+int main()
+{
+    printf("Enter The Size Of The Array....::\n");
+    scanf("%d",&n);
+    printf("Enter The Elements...:\n");
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    printf("Enter Ur Required Number That U Want To search..:\n");
+    scanf("%d",&item);
+    if(isContain(a,n,item))
+        printf("Search Successful....\n");
+    else
+        printf("Not Found...\n");
+}
+
+Programme 12. Binary Search 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isContain(int *x,int s,int t)
+{
+    int l,u,m;
+    l=0;u=s-1;
+    while(l<=u){
+        m=(l+u)/2;
+        if(x[m]==t) return true;
+        else if(x[m]>t) l=m+1;
+        else if(x[m]<t) u=m-1;
+    }
+    return false;
+}
+
+int main()
+{
+    int n,i,j,item,a[12345];
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    sort(a,a+n);
+
+    printf("Enter Ur Required Number That U Want To search..:\n");
+    scanf("%d",&item);
+    if(isContain(a,n,item))
+        printf("Search Successful....\n");
+    else
+        printf("Not Found...\n");
+}
+      
+
+                         ******* Linked List / Stack / Queue ********
+
+Programme 13. Linked List
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+
+struct node
+{
+    int info;
+    struct node *link;
+};
+struct node *START=NULL;
+
+struct node* createNode()
+{
+    struct node *n;
+    n=(struct node*)malloc(sizeof(struct node));
+    return n;
+};
+
+void insertNode(struct node *temp)
+{
+    struct node *t;
+    pf("Enter the Information...: ");
+    sf("%d",&temp->info);
+    temp->link=NULL;
+
+    if(START==NULL)
+        START=temp;
+    else{
+        t=START;
+        while(t->link!=NULL)
+            t=t->link;
+        t->link=temp;
+    }
+}
+
+void deleteNode()
+{
+    struct node *t;
+    if(START==NULL)
+        pf("Underflow...!\n");
+    else{
+        t=START;
+        START=t->link;
+        free(t);
+    }
+}
+
+void viewNode()
+{
+    struct node *t;
+    if(START==NULL)
+        pf("List is Empty.\n");
+    else{
+        t=START;
+        while(t!=NULL){
+            pf("%d ",t->info);
+            t=t->link;
+        }
+        pf("\n");
+    }
+}
+
+int main()
+{
+    int c;
+    struct node *N;
+    pf("1. Insert\n");
+    pf("2. Delete\n");
+    pf("3. ViewNode\n");
+
+    while(1){
+        pf("Select Your Required operation : ");
+        sf("%d",&c);
+        if(c==1){
+            N=createNode();
+            insertNode(N);
+        }
+        else if(c==2)
+            deleteNode();
+        else if(c==3)
+            viewNode();
+        else return 0;
+    }
+}
+
+
+Programme 14. Stack Operation
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+#define MX 5
+
+int STACK[MX],TOP=-1;
+
+void push()
+{
+    if(TOP==MX-1)
+        pf("Overflow\n");
+    else{
+        TOP++;
+        pf("Enter The Data : ");
+        sf("%d",&STACK[TOP]);
+    }
+}
+void pop()
+{
+    if(TOP==-1)
+        pf("Underflow.\n");
+    else{
+        pf("The Deleted Data is: %d\n",STACK[TOP]);
+        TOP--;
+    }
+}
+
+void viewStack()
+{
+    if(TOP==-1)
+        pf("Stack Is Empty.\n");
+    else{
+        for(int t=TOP;t>=0;t--)
+            pf("%d\n",STACK[t]);
+    }
+}
+
+int main()
+{
+    int c;
+    pf("1. PUSH\n");
+    pf("2. POP\n");
+    pf("3. VIEW_STACK\n");
+    while(1){
+        pf("Select Your Required Operation : ");
+        sf("%d",&c);
+        if(c==1)
+            push();
+        else if(c==2)
+            pop();
+        else if(c==3)
+            viewStack();
+        else return 0;
+    }
+}
+
+
+Programme 15. Queue Operation
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+#define MX 5
+
+int QUEUE[MX],FRONT=-1,REAR=-1;
+
+void push()
+{
+    if(FRONT==(REAR+1)%MX)
+        pf("Overflow\n");
+    else{
+        REAR++;
+        pf("Enter the Data : ");
+        sf("%d",&QUEUE[REAR]);
+
+        if(FRONT==-1)
+            FRONT=REAR;
+    }
+}
+
+void pop()
+{
+    if(FRONT==-1 && REAR==-1)
+        pf("Underflow\n");
+    else{
+        pf("Deleted Elements is : %d\n",QUEUE[FRONT]);
+        if(FRONT==REAR)
+            FRONT=REAR=-1;
+        else
+            FRONT++;
+    }
+}
+
+void viewQueue()
+{
+    if(FRONT==-1 && REAR==-1)
+        pf("Queue Is Empty.");
+    else{
+        for(int t=FRONT; t<=REAR; t++)
+            pf("%d ",QUEUE[t]);
+    }
+    pf("\n");
+}
+int main()
+{
+    int c;
+    pf("1. PUSH\n");
+    pf("2. POP\n");
+    pf("3. VIEW_QUEUE\n");
+
+    while(1){
+        pf("Select Your Required Operation : ");
+        sf("%d",&c);
+        if(c==1)
+            push();
+        else if(c==2)
+            pop();
+        else if(c==3)
+            viewQueue();
+        else return 0;
+    }
+
+}
+
+                            ******* Evaluation & Convertion *******
+
+
+Programme 16. Evaluation Of Postfix Expression
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int i,n=0,top,next_top;
+    string s;
+    stack<int>st;
+    getline(cin,s);
+    s=s+')';
+    for(i=0;i<s.size();i++){
+        if(isdigit(s[i])){
+            while(isdigit(s[i])){
+                n=n*10 + s[i]-'0';
+                i++;
+            }
+            st.push(n);
+            n=0;
+        }
+        else if(s[i]=='+' || s[i]=='-' || s[i]=='*' ||s[i]=='/'){
+            top=st.top(); st.pop();
+            next_top=st.top(); st.pop();
+            if(s[i]=='+') st.push(next_top+top);
+            else if(s[i]=='-') st.push(next_top-top);
+            else if(s[i]=='*') st.push(next_top*top);
+            else if(s[i]=='/') st.push(next_top/top);
+        }
+    }
+    printf("%d",st.top());
+
+    return 0;
+}
+
+
+
+Programme 17. Infix To Postfix Conversion
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int i,n;
+    string s,P;
+    stack<char>st;
+    getline(cin,s);
+    s+=')'; st.push('(');
+    while(!st.empty()){
+        for(i=0;i<s.size();i++){
+            if(isalpha(s[i])) P+=s[i];
+            else if(s[i]=='(') st.push(s[i]);
+            else if(s[i]=='^'){
+                while(st.top()=='^'){
+                    P+=s[i];
+                    st.pop();
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]=='/'){
+                while(st.top()=='^' || st.top()=='/'){
+                    P+=st.top();
+                    st.pop();
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]=='*'){
+                while(st.top()=='^' || st.top()=='/' || st.top()=='*'){
+                    P+=st.top();
+                    st.pop();
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]=='+'){
+                while(st.top()=='^' || st.top()=='/' || st.top()=='*' || st.top()=='+'){
+                    P+=st.top();
+                    st.pop();
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]=='-'){
+                while(st.top()=='^' || st.top()=='/' || st.top()=='*' || st.top()=='+' || st.top()=='-'){
+                    P+=st.top();
+                    st.pop();
+                }
+                st.push(s[i]);
+            }
+            else if(s[i]==')'){
+                while(st.top()!='('){
+                       P+=st.top();
+                       st.pop();
+                    }
+                st.pop();
+            }
+        }
+    }
+    cout<<P<<endl;
+}
+
+                           ******* Binary Tree / Heap / Graph ********
+
+Programme 18. Binary Search Tree
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+using namespace std;
+
+struct node
+{
+    int info;
+    struct node *left,*right;
+};
+struct node *root=NULL;
+
+struct node* createNode()
+{
+    struct node *n;
+    n=(struct node*)malloc(sizeof(struct node));
+    return n;
+}
+
+void insertNode(struct node *root,struct node *new_node)
+{
+    if(root->info > new_node->info){
+        if(root->left==NULL)
+            root->left=new_node;
+        else insertNode(root->left,new_node);
+    }
+    else if(root->info < new_node->info){
+        if(root->right==NULL)
+            root->right=new_node;
+        else insertNode(root->right,new_node);
+    }
+}
+
+struct node* FindMax(struct node *temp)
+{
+    while(temp->left!=NULL)
+        temp=temp->left;
+    return temp;
+}
+
+struct node* deleteNode(struct node *root,int data)
+{
+    struct node *temp;
+    if(root==NULL)
+        pf("No Such Element Is Found\n");
+    else if(root->info > data)
+        root->left=deleteNode(root->left,data);
+    else if(root->info < data)
+        root->right=deleteNode(root->right,data);
+    else{
+        if(root->left && root->right){
+            temp=FindMax(root->left);
+            root->info=temp->info;
+            root->left=deleteNode(root->left,root->info);
+        }
+        else{
+            temp=root;
+            if(root->left==NULL)
+                root=root->right;
+            else if(root->right==NULL)
+                root=root->left;
+            free(temp);
+        }
+    }
+    return root;
+}
+
+void preorder(struct node *root)
+{
+    if(root!=NULL){
+        pf("%d ",root->info);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+int main()
+{
+    int c,data;
+    struct node *new_node;
+
+    pf("1. Insert\n");
+    pf("2. Delete\n");
+    pf("3. Travers\n");
+
+    while(1){
+        pf("Select Required Operation : ");
+        sf("%d",&c);
+        if(c==1){
+            new_node=createNode();
+            pf("Enter Data : ");
+            sf("%d",&new_node->info);
+            new_node->left=new_node->right=NULL;
+
+            if(root==NULL)
+                root=new_node;
+
+            else insertNode(root,new_node);
+        }
+        else if(c==2){
+            pf("Enter The Data That YOu Want To Delete : ");
+            sf("%d",&data);
+            root=deleteNode(root,data);
+        }
+        else if(c==3){
+            if(root==NULL)
+                pf("Tree Is Empty ");
+            else preorder(root);
+        }
+        else return 0;
+    }
+}
+
+
+Programme 19. Heap Operation
+
+#include<bits/stdc++.h>
+#define sf scanf
+#define pf printf
+using namespace std;
+
+int HEAP[100],data,i=-1,k,c,p;
+
+void insertData(int j)
+{
+    while(j){
+        if(HEAP[j]>HEAP[(j-1)/2])
+           swap(HEAP[j],HEAP[(j-1)/2]);
+        j=(j-1)/2;
+    }
+}
+void deleteData(int j)
+{
+    swap(HEAP[j],HEAP[0]); j--;
+    k=0;
+    while(2*k+2<j){
+        if(HEAP[k]<HEAP[(2*k)+1] || HEAP[k]<HEAP[(2*k)+2])
+        {
+            if(HEAP[(2*k)+1]>HEAP[(2*k)+2]){
+                swap(HEAP[k],HEAP[(2*k)+1]);
+                k=(2*k)+1;
+            }
+            if(HEAP[(2*k)+1]<HEAP[(2*k)+2]){
+                swap(HEAP[k],HEAP[(2*k)+2]);
+                k=(2*k)+2;
+            }
+        }
+    }
+}
+void showHeap(int j)
+{
+    for(int k=0;k<=j;k++)
+        cout<<HEAP[k]<<" ";
+    cout<<endl;
+}
+int main()
+{
+    pf("1. Insert\n");
+    pf("2. Delete\n");
+    pf("3. Show_Heap\n");
+    while(1){
+        pf("Select Required Operation : ");
+        sf("%d",&c);
+        if(c==1){
+            pf("Enter Data....: ");
+            sf("%d",&data);
+            HEAP[++i]=data;
+            insertData(i);
+        }
+        else if(c==2)
+            deleteData(i--);
+        else if(c==3)
+            showHeap(i);
+        else return 0;
+    }
+}
+
+
+Programme 20. Graph Repersentaion (With Adjacency Matrix)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int GRAPH[100][100],V,E,start,end,i,j;
+    printf("Enter The Number Of Vertex/Node....: \n");
+    scanf("%d",&V);
+    for(i=1;i<=V;i++){
+        for(j=1;j<=V;j++)
+            GRAPH[i][j]=0;
+    }
+    printf("Enter The Number OF Edges..: \n");
+    scanf("%d",&E);
+    printf("Enter the Origin & Then Destination For %d Times:\n",E);
+    for(i=1;i<=E;i++){
+        scanf("%d %d",&start,&end);
+        GRAPH[start][end]=1;
+    }
+    printf("After Connection The Edges Graph Representation :\n");
+    for(i=1;i<=V;i++){
+        for(j=1;j<=V;j++)
+            printf("%d ",GRAPH[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
+
+                                                                    SUVRO CSE'16
